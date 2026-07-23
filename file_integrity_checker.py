@@ -1,45 +1,21 @@
 import hashlib
 import os
+import json
 
-def calculate_hash(filename):
-    sha256 = hashlib.sha256()
+folder_path = "test_files"
+hash_file = "hashes.json"
 
-    with open(filename, "rb") as file:
-        while True:
-            data = file.read(4096)
+with open(hash_file, "r") as file:
+    original_hashes = json.load(file)
 
-            if not data:
-                break
+for filename in os.listdir(folder_path):
 
-            sha256.update(data)
+    file_path = os.path.join(folder_path, filename)
 
-    return sha256.hexdigest()
+    with open(file_path, "rb") as file:
+        current_hash = hashlib.sha256(file.read()).hexdigest()
 
-
-filename = input("Enter the file path: ")
-
-if os.path.exists(filename):
-
-    original_hash = calculate_hash(filename)
-
-    print("\nOriginal SHA-256 Hash:")
-    print(original_hash)
-
-    print("\nNow modify the file if you want to test integrity.")
-    input("Press Enter after modifying the file...")
-
-    current_hash = calculate_hash(filename)
-
-    print("\nCurrent SHA-256 Hash:")
-    print(current_hash)
-
-    if original_hash == current_hash:
-        print("\nFILE INTEGRITY: SAFE")
-        print("The file has not been modified.")
-
+    if current_hash == original_hashes[filename]:
+        print(filename, "→ File is unchanged")
     else:
-        print("\nFILE INTEGRITY: COMPROMISED")
-        print("The file has been modified!")
-
-else:
-    print("File not found!")
+        print(filename, "→ WARNING: File has been modified!")
