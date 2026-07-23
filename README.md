@@ -1,48 +1,34 @@
-# File Integrity Checker 🔐
+# File Integrity Checker
 
-A Python cybersecurity tool that detects file modifications using SHA-256 hashing.
+A Python cybersecurity tool that monitors files and detects unauthorized changes using SHA-256 hashing.
 
 ## Features
 
-- Calculates SHA-256 hash of a file
-- Detects unauthorized file modifications
-- Compares original and current file hashes
-- Displays SAFE or COMPROMISED status
-
-## Technologies Used
-
-- Python
-- SHA-256
-- hashlib
-
-## How to Run
-
-Run the following command:
-
-python file_integrity_checker.py
-
-Then enter the file name:
-
-test.txt
+- Detects modified files
+- Detects new files
+- Detects deleted files
+- Uses SHA-256 cryptographic hashing
+- Monitors multiple files
+- Stores original file hashes in JSON format
 
 ## How It Works
 
-The program creates an original SHA-256 hash of the file.
+1. The program calculates the SHA-256 hash of each file.
+2. Original hashes are stored in `hashes.json`.
+3. The program scans the files again.
+4. It compares the current hash with the original hash.
+5. It reports whether a file is unchanged, modified, new, or deleted.
 
-After the file is modified, the program creates a new SHA-256 hash.
+## Project Structure
 
-If both hashes are the same:
-
-FILE INTEGRITY: SAFE
-
-If the hashes are different:
-
-FILE INTEGRITY: COMPROMISED
-
-## Cybersecurity Concepts
-
-- File Integrity Monitoring
-- Cryptographic Hashing
-- SHA-256
-- Data Integrity
-- Tamper Detection
+```text
+file-integrity-checker/
+│
+├── file_integrity_checker.py
+├── hashes.json
+├── README.md
+│
+└── test_files/
+    ├── file1.txt
+    ├── file2.txt
+    └── new_file.txt
