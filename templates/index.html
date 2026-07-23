@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Integrity Checker</title>
+</head>
+
+<body>
+
+    <h1>🔐 File Integrity Checker</h1>
+
+    <p>Check whether your file has been modified.</p>
+
+    <input type="file" id="fileInput">
+
+    <br><br>
+
+    <button onclick="checkFile()">
+        Check File Integrity
+    </button>
+
+    <p id="result"></p>
+
+    <script>
+        async function checkFile() {
+    const fileInput = document.getElementById("fileInput");
+    const result = document.getElementById("result");
+
+    if (fileInput.files.length === 0) {
+        result.innerText = "Please select a file first.";
+        return;
+    }
+
+    const file = fileInput.files[0];
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    result.innerText = "Checking file...";
+
+    const response = await fetch("/check", {
+        method: "POST",
+        body: formData
+    });
+
+    const data = await response.json();
+
+    result.innerText = data.message;
+}
+    </script>
+
+</body>
+</html>
