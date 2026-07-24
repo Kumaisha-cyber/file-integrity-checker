@@ -1,52 +1,187 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>File Integrity Checker</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #0b1120;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+            background: #111827;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(0, 255, 170, 0.15);
+        }
+
+        .icon {
+            font-size: 55px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            color: #22c55e;
+            margin-bottom: 12px;
+        }
+
+        .description {
+            color: #9ca3af;
+            margin-bottom: 30px;
+        }
+
+        .upload-box {
+            border: 2px dashed #374151;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+        }
+
+        input[type="file"] {
+            color: white;
+            width: 100%;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: #22c55e;
+            color: #06130a;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #16a34a;
+        }
+
+        #result {
+            margin-top: 25px;
+            padding: 18px;
+            border-radius: 10px;
+            background: #1f2937;
+            white-space: pre-line;
+            color: #d1d5db;
+        }
+
+        .footer {
+            margin-top: 25px;
+            color: #6b7280;
+            font-size: 13px;
+        }
+    </style>
 </head>
 
 <body>
 
-    <h1>🔐 File Integrity Checker</h1>
+    <div class="container">
 
-    <p>Check whether your file has been modified.</p>
+        <div class="icon">🔐</div>
 
-    <input type="file" id="fileInput">
+        <h1>File Integrity Checker</h1>
 
-    <br><br>
+        <p class="description">
+            Check whether your file has been modified using SHA-256 hashing.
+        </p>
 
-    <button onclick="checkFile()">
-        Check File Integrity
-    </button>
+        <div class="upload-box">
 
-    <p id="result"></p>
+            <input type="file" id="fileInput">
+
+        </div>
+
+        <button onclick="checkFile()">
+            🔍 Check File Integrity
+        </button>
+
+        <p id="result">
+            Select a file to begin checking.
+        </p>
+
+        <div class="footer">
+            🛡️ Secure File Verification System
+        </div>
+
+    </div>
+
 
     <script>
+
         async function checkFile() {
-    const fileInput = document.getElementById("fileInput");
-    const result = document.getElementById("result");
 
-    if (fileInput.files.length === 0) {
-        result.innerText = "Please select a file first.";
-        return;
-    }
+            const fileInput =
+                document.getElementById("fileInput");
 
-    const file = fileInput.files[0];
+            const result =
+                document.getElementById("result");
 
-    const formData = new FormData();
-    formData.append("file", file);
 
-    result.innerText = "Checking file...";
+            if (fileInput.files.length === 0) {
 
-    const response = await fetch("/check", {
-        method: "POST",
-        body: formData
-    });
+                result.innerText =
+                    "Please select a file first.";
 
-    const data = await response.json();
+                return;
+            }
 
-    result.innerText = data.message;
-}
+
+            const file =
+                fileInput.files[0];
+
+
+            const formData =
+                new FormData();
+
+            formData.append("file", file);
+
+
+            result.innerText =
+                "🔄 Checking file integrity...";
+
+
+            const response =
+                await fetch("/check", {
+
+                    method: "POST",
+
+                    body: formData
+
+                });
+
+
+            const data =
+                await response.json();
+
+
+            result.innerText =
+                data.message;
+
+        }
+
     </script>
 
 </body>
+
 </html>

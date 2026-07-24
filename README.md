@@ -1,59 +1,45 @@
-# File Integrity Checker 🔐
+# 🔐 File Integrity Checker
 
-A Python cybersecurity tool that monitors multiple files and detects unauthorized modifications, new files, and deleted files using SHA-256 cryptographic hashing.
+A cybersecurity tool that verifies whether a file has been modified using SHA-256 hashing.
 
-## Features
+## 🚀 Features
 
-- Calculates SHA-256 hashes of multiple files
-- Detects unauthorized file modifications
-- Detects newly added files
-- Detects deleted files
-- Compares original and current file hashes
-- Stores original hashes in JSON format
-- Provides clear security warnings
+- Generate SHA-256 file hashes
+- Detect file modifications
+- Compare file integrity
+- Simple and professional interface
+- Real-time integrity verification
 
-## Technologies Used
+## 🛠️ Technologies Used
 
 - Python
-- SHA-256
-- hashlib
-- JSON
-- os module
+- Flask
+- HTML
+- CSS
+- JavaScript
+- SHA-256 Hashing
 
-## Project Structure
+## 🔍 How It Works
 
-file-integrity-checker/
-│
-├── file_integrity_checker.py
-├── hashes.json
-├── README.md
-│
-└── test_files/
-    ├── file1.txt
-    ├── file2.txt
-    └── new_file.txt
+1. Select a file.
+2. The application generates a SHA-256 hash.
+3. The hash is compared with the original hash.
+4. The application displays the file integrity status.
 
-## How It Works
+## 📊 Results
 
-1. The program calculates the SHA-256 hash of each file.
-2. The original hashes are stored in `hashes.json`.
-3. The program scans the files again.
-4. Current hashes are compared with the original hashes.
-5. The program detects whether a file is unchanged, modified, new, or deleted.
+### ✅ Safe File
 
-## Example Output
+The file has not been modified.
 
-file1.txt → WARNING: File has been modified!
+### ⚠️ Compromised File
 
-file2.txt → File is unchanged
+The file has been modified and the SHA-256 hash has changed.
 
-new_file.txt → WARNING: New file detected!
+## 🎯 Project Purpose
 
-file3.txt → WARNING: File has been deleted!
+This project demonstrates how cryptographic hashing can be used to verify file integrity and detect unauthorized modifications.
 
-## How to Run
+## 👩‍💻 Author
 
-Run the following command:
-
-```bash
-python file_integrity_checker.py
+Kumaisha Cyber
