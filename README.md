@@ -36,6 +36,10 @@ The file has not been modified.
 
 The file has been modified and the SHA-256 hash has changed.
 
+## 🌐 Live Demo
+
+[🚀 Try the File Integrity Checker](https://scaling-parakeet-966pvq955qjrhp5rw-5000.app.github.dev/)
+
 ## 🎯 Project Purpose
 
 This project demonstrates how cryptographic hashing can be used to verify file integrity and detect unauthorized modifications.
